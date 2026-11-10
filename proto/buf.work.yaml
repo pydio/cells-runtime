@@ -1,0 +1,10 @@
+version: v1
+directories:
+  - broker
+  - config
+  - log
+  - options/orm
+  - options/setter
+  - registry
+  - server
+  - service

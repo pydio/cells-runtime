@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package service;
+
+option go_package = "github.com/pydio/cells-runtime/proto/service";
+
+service ServiceManager {
+    rpc Start(StartRequest) returns (StartResponse);
+    rpc Stop(StopRequest) returns (StopResponse);
+}
+
+message StartRequest { string name = 1; }
+message StartResponse { bool OK = 1; }
+message StopRequest { string name = 1; }
+message StopResponse { bool OK = 1; }
+
+message Error {
+    string ID = 1;
+    uint32 Code = 2;
+    string Status = 3;
+    string Details = 4;
+}
+
+message ErrorDetail {
+    string Key = 1;
+    string StringValue = 2;
+    bytes JsonValue = 3;
+}
+
+message ErrorSentinel { string Name = 1; }
+
+message MigrateRequest {
+    repeated string Services = 1;
+    string Version = 2;
+}
+
+message MigrateResponse { bool Success = 1; }
+
+// MigrateService triggers one or more service migrations.
+service MigrateService {
+    rpc Migrate(MigrateRequest) returns (MigrateResponse);
+}

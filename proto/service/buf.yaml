@@ -1,0 +1,12 @@
+version: v1
+lint:
+  use:
+    # The package and message names are an existing public contract. MINIMAL
+    # keeps structural checks without forcing a wire-visible rename.
+    - MINIMAL
+  except:
+    # The legacy module root is part of the generation layout.
+    - PACKAGE_DIRECTORY_MATCH
+breaking:
+  use:
+    - FILE
